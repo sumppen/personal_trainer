@@ -50,7 +50,7 @@ export default function Customers() {
         accessor: 'postcode',
     }, {
         Header: 'City',
-        accessor: 'postcode',
+        accessor: 'city',
     }, {
         Header: 'Email',
         accessor: 'email'
