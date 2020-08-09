@@ -6,7 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-export default function AddCustomer(props) {
+export default function ShowCustomer(props) {
     const [open, setOpen] = React.useState(false);
     const [customer, setCustomer] = React.useState({
         firstname: '', lastname: '', streetaddress: '', postcode: '',
@@ -14,38 +14,30 @@ export default function AddCustomer(props) {
     })
 
     const handleClickOpen = () => {
+        fetch(props.url)
+            .then(response => response.json())
+            .then(responseData => {
+                setCustomer(responseData)
+            })
+            .catch(err => console.error(err));
         setOpen(true);
     };
 
     const handleClose = () => {
         setOpen(false);
-
-        setCustomer({
-            firstname: '', lastname: '', streetaddress: '', postcode: '',
-            city: '', email: '', phone: ''
-        });
     };
 
     function handleInputChange(e) {
         setCustomer({ ...customer, [e.target.id]: e.target.value})
     }
 
-    function saveCustomer() {
-        props.saveCustomer(customer);
-        setOpen(false);
-        setCustomer({
-            firstname: '', lastname: '', streetaddress: '', postcode: '',
-            city: '', email: '', phone: ''
-        });
-    }
-
     return (
         <div>
-            <Button style={{margin: 10}} variant="outlined" color="primary" onClick={handleClickOpen}>
-                Add customer
+            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+                Show customer
             </Button>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Add customer</DialogTitle>
+                <DialogTitle id="form-dialog-title">Add car</DialogTitle>
                 <DialogContent>
                     <TextField
                         autoFocus
@@ -107,10 +99,7 @@ export default function AddCustomer(props) {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
-                        Cancel
-                    </Button>
-                    <Button onClick={saveCustomer} color="primary">
-                        Save
+                        Close
                     </Button>
                 </DialogActions>
             </Dialog>

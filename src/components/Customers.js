@@ -131,7 +131,7 @@ export default function Customers() {
     }, {
         Header: 'Phone',
         accessor: 'phone'
-    }, {
+     }, {
         sortable: false,
         filterable: false,
         width: 100,
@@ -145,7 +145,7 @@ export default function Customers() {
         width: 100,
         accessor: 'links[0].href',
         Cell: row => (
-            <Button color={"secondary"} size={"small"} onClick={() => deleteCustomer(row.value)}>Delete</Button>
+            <Button variant="outlined" color={"secondary"} size={"small"} onClick={() => deleteCustomer(row.value)}>Delete</Button>
         )
     }
     ];
@@ -155,7 +155,7 @@ export default function Customers() {
             <AddCustomer saveCustomer={saveCustomer}/>
             <ReactTable data={customers}
                         columns={columns}
-                        sortable='true'
+                        sortable={true}
                         filterable={true}
                         defaultPageSize='10'/>
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
