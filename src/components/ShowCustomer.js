@@ -37,7 +37,7 @@ export default function ShowCustomer(props) {
                 Show customer
             </Button>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Add car</DialogTitle>
+                <DialogTitle id="form-dialog-title">Customer</DialogTitle>
                 <DialogContent>
                     <TextField
                         autoFocus
