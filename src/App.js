@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './App.css';
+import './App.scss';
 import Customers from "./components/Customers";
 import Trainings from "./components/Trainings";
 import AppBar from '@material-ui/core/AppBar';
@@ -9,6 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from "@material-ui/core/Box";
+import TrainingCalendar from "./components/TrainingCalendar";
+import Statistics from "./components/Statistics";
 
 function App() {
     const [value, setValue] = React.useState(0);
@@ -22,7 +24,7 @@ function App() {
             id: `simple-tab-${index}`,
             'aria-controls': `simple-tabpanel-${index}`,
         };
-    };
+    }
 
     function TabPanel(props) {
         const { children, value, index, ...other } = props;
@@ -60,6 +62,8 @@ function App() {
             <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
                 <Tab label="Customers" {...a11yProps(0)} />
                 <Tab label="Trainings" {...a11yProps(1)} />
+                <Tab label="Calendar" {...a11yProps(2)} />
+                <Tab label="Statistics" {...a11yProps(3)} />
             </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
@@ -67,6 +71,12 @@ function App() {
         </TabPanel>
         <TabPanel value={value} index={1}>
             <Trainings/>
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+            <TrainingCalendar/>
+        </TabPanel>
+        <TabPanel value={value} index={3}>
+            <Statistics/>
         </TabPanel>
     </div>
   );
